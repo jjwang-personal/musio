@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Musio</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body data-recovery="steady">
+    <div class="page-shell">
+      <div class="ambient-orb orb-a"></div>
+      <div class="ambient-orb orb-b"></div>
+
+      <div class="phone-frame">
+        <header class="hero">
+          <div class="hero-topline">
+            <span class="station-call">MUSIO FM</span>
+            <span id="stationStatus" class="live-pill">System idle</span>
+          </div>
+
+          <div class="hero-copy">
+            <p class="eyebrow">Body-Aware AI DJ</p>
+            <h1>Your night station</h1>
+            <p class="subtitle">
+              The player atmosphere is ours. Music, DJ transitions, and body state all live in one place.
+            </p>
+          </div>
+
+          <div class="hero-wave">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </header>
+
+        <main class="layout">
+          <section class="panel spotify-status-card mini-spotify-card">
+            <div class="panel-header">
+              <div>
+                <p class="label">Spotify</p>
+                <h2>Playback link</h2>
+              </div>
+              <span class="source-badge">Connect</span>
+            </div>
+
+            <p id="spotifyStatusText" class="copy-foot">
+              Connect your Spotify account so Musio can control full-track playback.
+            </p>
+
+            <div id="playbackDeviceRow" class="device-row hidden">
+              <span id="playbackDeviceText">Spotify device not ready</span>
+              <button id="openSpotifyButton" class="ghost-button tiny" type="button">Open Spotify</button>
+            </div>
+
+            <div class="spotify-actions compact-actions">
+              <button id="spotifyAuthButton" class="primary-button" type="button">Connect</button>
+              <button id="spotifyCheckButton" class="ghost-button" type="button">Check device</button>
+              <button id="spotifyLogoutButton" class="ghost-button" type="button">Disconnect</button>
+            </div>
+          </section>
+
+          <section class="stage-card app-card player-card">
+            <div class="stage-header">
+              <div>
+                <p class="label">Player</p>
+                <h2 id="nowPlayingTitle">Waiting for a set</h2>
+              </div>
+              <span id="sourceBadge" class="source-badge">heuristic</span>
+            </div>
+
+            <div class="world-scene" aria-hidden="true">
+              <div class="sky-path"></div>
+              <div class="white-architecture architecture-left"></div>
+              <div class="white-architecture architecture-right"></div>
+              <div class="sun-dot"></div>
+              <div class="tree-line">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="sea-band"></div>
+              <div class="green-hill"></div>
+              <div class="walking-path"></div>
+              <div class="rest-rock"></div>
+              <div class="tiny-cabin"></div>
+              <div class="kite">
+                <span></span>
+              </div>
+              <div class="music-notes">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="tiny-person">
+                <span class="person-head"></span>
+                <span class="person-coat"></span>
+                <span class="person-legs"></span>
+                <span class="person-instrument"></span>
+              </div>
+            </div>
+
+            <div class="stage-grid">
+              <div class="art-column">
+                <div id="coverDisc" class="cover-disc">
+                  <div class="cover-inner"></div>
+                  <div class="vinyl-ring"></div>
+                </div>
+              </div>
+
+              <div class="stage-copy">
+                <p id="nowPlayingArtist" class="lead-copy">
+                  Musio will pick the first track for you.
+                </p>
+                <a id="trackLink" class="track-link hidden" href="/" target="_blank" rel="noreferrer">
+                  Open in Apple
+                </a>
+
+                <div class="progress-row">
+                  <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                  </div>
+                  <span id="progressTime">0:00 / 0:00</span>
+                </div>
+
+                <div class="transport-row">
+                  <button id="prevButton" class="ghost-button small" type="button">Prev</button>
+                  <button id="playButton" class="round-button" type="button" aria-label="Play or pause">
+                    ▶
+                  </button>
+                  <button id="nextButton" class="ghost-button small" type="button">Next</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="stage-footer">
+              <div class="stage-note">
+                <p class="label">DJ Intro</p>
+                <p id="introText" class="copy-block">
+                  Describe a mood and Musio will return a DJ intro plus a four-track queue.
+                </p>
+              </div>
+              <div class="stage-actions">
+                <p id="segueText" class="copy-foot">Transitions will appear here.</p>
+                <button id="speakButton" class="ghost-button small" type="button">Read intro aloud</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel command-card app-card chat-card">
+            <div class="panel-header">
+              <div>
+                <p class="label">Chat</p>
+                <h2>Ask Musio</h2>
+              </div>
+              <button id="randomPromptButton" class="ghost-button" type="button">
+                Shuffle
+              </button>
+            </div>
+
+            <div id="quickPromptList" class="chip-row"></div>
+
+            <label class="prompt-box">
+              <textarea
+                id="promptInput"
+                rows="3"
+                placeholder="Tell Musio what you want to hear. Try: late-night driving, low saturation, no hard spikes."
+              ></textarea>
+            </label>
+
+            <div class="action-row">
+              <button id="planButton" class="primary-button" type="button">
+                Generate DJ Set
+              </button>
+              <p id="statusText" class="status-text">Ready</p>
+            </div>
+          </section>
+
+          <section class="panel panel-oura app-card oura-card">
+            <div class="panel-header">
+              <div>
+                <p class="label">Oura Ring</p>
+                <h2 id="bodyModeTitle">Steady Focus</h2>
+              </div>
+              <span id="ouraModeBadge" class="source-badge">mock</span>
+            </div>
+
+            <div class="oura-hero">
+              <div>
+                <p class="label">Today</p>
+                <h3 id="recoveryTitle" class="section-title">Steady Focus</h3>
+              </div>
+              <p id="ouraSummaryText" class="copy-foot">
+                Your recovery summary appears here and shapes the direction of the DJ set.
+              </p>
+            </div>
+
+            <div id="ouraMetricsGrid" class="metrics-grid"></div>
+            <div id="ouraProfileList" class="chip-row compact"></div>
+          </section>
+
+          <details class="panel detail-panel hidden-surface">
+            <summary>
+              <span>
+                <span class="label">Queue</span>
+                <strong>Current set</strong>
+              </span>
+              <span id="tagList" class="tag-list">-</span>
+            </summary>
+            <p id="musicSourceText" class="copy-foot">There is no queue yet.</p>
+            <div id="queueList" class="queue-list"></div>
+          </details>
+
+          <details class="panel detail-panel spotify-panel hidden-surface">
+            <summary>
+              <span>
+                <span class="label">Spotify Tools</span>
+                <strong>Settings and match review</strong>
+              </span>
+              <span class="source-badge">PKCE</span>
+            </summary>
+
+            <label class="config-field">
+              <span class="config-label">Spotify Client ID</span>
+              <input
+                id="spotifyClientIdInput"
+                type="text"
+                placeholder="Paste your Spotify app client ID"
+                autocomplete="off"
+              />
+            </label>
+
+            <p id="spotifyRedirectText" class="copy-foot">
+              Redirect URI: configure the current page URL in your Spotify app settings.
+            </p>
+
+            <div class="spotify-actions">
+              <button id="spotifyReviewButton" class="ghost-button" type="button">Review matches</button>
+              <button id="spotifyPlaylistButton" class="ghost-button" type="button">Save current set</button>
+            </div>
+
+            <p id="spotifyReviewSummary" class="copy-foot">
+              Review will show which tracks matched cleanly before you save.
+            </p>
+            <div id="spotifyReviewList" class="spotify-review-list"></div>
+
+            <a
+              id="spotifyPlaylistLink"
+              class="track-link hidden"
+              href="/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open Spotify playlist
+            </a>
+          </details>
+
+          <details class="panel detail-panel hidden-surface">
+            <summary>
+              <span>
+                <span class="label">Oura Details</span>
+                <strong>Decision trace</strong>
+              </span>
+              <span id="decisionResult" class="source-badge">Steady Focus</span>
+            </summary>
+
+            <div class="body-mode-card compact-card">
+              <p id="bodyModeSummary" class="copy-foot">
+                Oura translates your metrics into a station mode, then Musio uses that mode to shape pacing, tone, and track sequencing.
+              </p>
+              <div id="ouraInfluenceList" class="influence-list"></div>
+            </div>
+
+            <div class="decision-card compact-card">
+              <div class="decision-card-header">
+                <p class="label">Decision Trace</p>
+              </div>
+              <div id="decisionTraceList" class="decision-trace-list"></div>
+              <p id="decisionBehavior" class="copy-foot">
+                Playback behavior will appear after Oura loads.
+              </p>
+            </div>
+          </details>
+
+          <details class="panel detail-panel hidden-surface">
+            <summary>
+              <span>
+                <span class="label">History</span>
+                <strong>Recent sets</strong>
+              </span>
+            </summary>
+            <div id="historyList" class="history-list"></div>
+          </details>
+        </main>
+      </div>
+    </div>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

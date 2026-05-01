@@ -1,0 +1,46 @@
+{
+  "name": "musio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Zero-dependency AI DJ MVP",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "desktop": "electron electron/main.cjs",
+    "desktop:server": "PORT=3060 node server.js",
+    "build:icon": "swift scripts/generate-icon.swift",
+    "build:mac": "electron-builder --mac --dir",
+    "dist:mac": "electron-builder --mac"
+  },
+  "build": {
+    "appId": "app.musio.desktop",
+    "productName": "Musio",
+    "asar": true,
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "electron/**/*",
+      "lib/**/*",
+      "public/**/*",
+      "server.js",
+      "package.json",
+      "README.md"
+    ],
+    "mac": {
+      "category": "public.app-category.music",
+      "target": [
+        "dir",
+        "dmg"
+      ],
+      "icon": "build/icon.icns"
+    }
+  },
+  "devDependencies": {
+    "electron": "^41.4.0",
+    "electron-builder": "^26.8.1"
+  }
+}

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title>Musio icon</title>
+  <defs>
+    <linearGradient id="bg" x1="64" x2="448" y1="64" y2="448" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#151923"/>
+      <stop offset="0.55" stop-color="#0a0d16"/>
+      <stop offset="1" stop-color="#05060b"/>
+    </linearGradient>
+    <linearGradient id="pulse" x1="124" x2="388" y1="126" y2="386" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#69d2ff"/>
+      <stop offset="0.48" stop-color="#f4b860"/>
+      <stop offset="1" stop-color="#ff7d55"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="url(#bg)"/>
+  <path fill="none" stroke="#f4f1eb" stroke-linecap="round" stroke-width="18" opacity=".34" d="M122 264c28-84 75-126 134-126s106 42 134 126"/>
+  <path fill="none" stroke="url(#pulse)" stroke-linecap="round" stroke-linejoin="round" stroke-width="28" d="M126 304h58l30-96 56 168 36-118h80"/>
+  <circle cx="256" cy="256" r="45" fill="#f4f1eb"/>
+  <circle cx="256" cy="256" r="18" fill="#0a0d16"/>
+  <path fill="#f4f1eb" opacity=".78" d="M156 382h200v24H156z"/>
+</svg>
